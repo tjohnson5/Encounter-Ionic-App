@@ -1,0 +1,47 @@
+<ion-content class="home" padding>
+  <h1 text-center>Enter Your Information</h1>
+
+  <form id="student-form" [ngFormModel]="studentForm" (ngSubmit)="savePersonInfo(studentForm.value)" class="list">
+      <label class="item item-input " id="home-input1" name="firstName">
+          <span class="input-label">First Name</span>
+          <input type="text" placeholder="" [ngFormControl]="firstName" [ngModel]='student.firstname' required>
+      </label>
+      <label class="item item-input " id="home-input2" name="lastName">
+          <span class="input-label">Last Name</span>
+          <input type="text" placeholder="" [ngFormControl]="lastName" [ngModel]='student.lastname' required>
+      </label>
+      <label class="item item-input " id="home-input3" name="emailAddress">
+          <span class="input-label">Email</span>
+          <input type="email" placeholder="" [ngFormControl]="email" [ngModel]='student.email' required>
+      </label>
+      <label class="item item-input " id="home-input4" name="phoneNumber">
+          <span class="input-label">Phone</span>
+          <input type="tel" placeholder="" [ngFormControl]="phone" [ngModel]='student.phone' required>
+      </label>
+      <label class="item item-select " id="home-select1" name="yearInSchool">
+          <span class="input-label">Year in School</span>
+          <select [ngFormControl]="year" required>
+              <option>Freshman</option>
+              <option>Sophomore</option>
+              <option>Junior</option>
+              <option>Senior</option>
+              <option>Other</option>
+          </select>
+      </label>
+      <label class="item item-select " id="home-select2" name="gender">
+          <span class="input-label">Gender</span>
+          <select [ngFormControl]="gender" required>
+              <option>Male</option>
+              <option>Female</option>
+          </select>
+      </label>
+      <button block secondary type="submit">Update</button>
+  </form>
+<!-- <ion-item *ngFor="let student of student">
+        First Name: {{student.firstname}}
+        Last Name: {{student.lastname}}
+</ion-item> -->
+  <ion-buttons end>
+      <button (click)="dismissModal()"><icon add></icon>Close</button>
+  </ion-buttons>
+</ion-content>

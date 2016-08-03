@@ -1,0 +1,37 @@
+<ion-navbar *navbar>
+  <ion-title>
+    Blank Starter
+  </ion-title>
+</ion-navbar>
+
+<ion-content padding class="events">
+    <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+             pullingIcon="arrow-dropdown"
+             pullingText="Pull to refresh"
+             refreshingSpinner="circles"
+             refreshingText="Refreshing...">
+           </ion-refresher-content>
+    </ion-refresher> -->
+  <ion-list>
+      <ion-item *ngFor="let event of events">
+          <ion-card>
+              <ion-card-header>
+                  {{event.summary}}
+              </ion-card-header>
+              <ion-card-content>
+                 {{event.startDayWeek}}, {{event.startMonth}} {{event.startDay}}th, {{event.startYear}}
+              </ion-card-content>
+              <ion-card-content ng-show="event.startTime != null">
+                 {{event.startTime}}
+                 <div>{{event.description}}</div>
+              </ion-card-content>
+              <!-- <ion-card-content ng-if="event.startDate.dateTime">
+                 {{event.startDate.dateTime}}
+              </ion-card-content> -->
+          </ion-card>
+      </ion-item>
+  </ion-list>
+
+
+</ion-content>
