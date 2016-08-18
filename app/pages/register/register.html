@@ -1,28 +1,51 @@
+<ion-header>
+  <ion-toolbar no-border-bottom class="orange">
+      <!-- <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button> -->
+    <ion-title>Event Signup</ion-title>
+    <ion-buttons end>
+      <button (click)="doRefresh()">
+          <ion-icon name="refresh"></ion-icon>
+      </button>
+      <!-- <button (click)="openModal()">
+        <ion-icon name="person"></ion-icon>
+      </button> -->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-<ion-navbar *navbar>
-  <ion-title>Register</ion-title>
-</ion-navbar>
-
-<ion-content padding class="register">
-    <ion-refresher (ionRefresh)="doRefresh($event)">
+<ion-content fullscreen padding class="register">
+    <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content
              pullingIcon="arrow-dropdown"
              pullingText="Pull to refresh"
-             refreshingSpinner="circles"
-             refreshingText="Refreshing...">
+             refreshingSpinner="circles">
            </ion-refresher-content>
-    </ion-refresher>
-    <ion-list>
-        <ion-item *ngFor="let event of events">
-            <ion-card>
+    </ion-refresher> -->
+
+            <ion-card *ngFor="let event of events" text-wrap>
                 <ion-card-header>
-                    {{event.title}}
+                    <span class="title">{{event.title}}</span>
+                    <span class="date">{{formatDateDisplay(event)}}</span>
                 </ion-card-header>
-                <ion-card-content>
-                    <img style="width:auto; height:100px;" src='{{event.imageURL}}'/>
-                </ion-card-content>
-                <button block primary (click)="submitToSheet(event.title)">Register</button>
+                <img src='{{event.imageURL}}'/>
+                <ion-card-content [innerHTML]="event.desc"></ion-card-content>
+                <ion-buttons end>
+                      <button block primary *ngIf="isNotRegistered(event.id)" (click)="submitToSheet(event.title, event.id)">Sign Me Up</button>
+                      <button block primary *ngIf="!isNotRegistered(event.id) && !isSudentProfileBlank()" disabled>Signed Up!</button>
+                      <button block primary *ngIf="!isNotRegistered(event.id) && isSudentProfileBlank()" (click)="openModal()">Sign Me Up</button>
+                </ion-buttons>
             </ion-card>
-        </ion-item>
-    </ion-list>
+            <ion-card text-wrap>
+                <!-- <ion-card-header>
+                    <span class="title">{{event.title}}</span>
+                    <span class="date">{{formatDateDisplay(event)}}</span>
+                </ion-card-header> -->
+                <ion-card-content>
+                    If you registered for an event but can no longer go, please contact our office at office@isuencounter.org and let us know you are not coming.
+                </ion-card-content>
+
+            </ion-card>
+
 </ion-content>
